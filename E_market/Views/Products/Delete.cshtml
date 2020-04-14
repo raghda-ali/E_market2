@@ -32,7 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content("~/Uploads/" + Model.Image)" width="300" height="200" class="center" top=100px margin=25px10px display=inline-block />
+            @*@Html.DisplayFor(model => model.Image)*@
         </dd>
 
         <dt>

@@ -34,16 +34,25 @@ namespace E_market.Controllers
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var Product = db.products.SingleOrDefault(c => c.id == id);
+            var Categories = db.categories.ToList();
+            ProductCategoryViewModel pcvm = new ProductCategoryViewModel
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
+                Categories = Categories,
+                Product = Product
+            };
+
+            return View(pcvm);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Product product = db.products.Find(id);
+            //if (product == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(product);
         }
 
         // GET: Products/Create

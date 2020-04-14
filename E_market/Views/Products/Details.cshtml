@@ -1,4 +1,5 @@
-﻿@model E_market.Models.Product
+﻿@*@model E_market.Models.Product*@
+@model E_market.ViewModels.ProductCategoryViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,40 +12,49 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Product.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Product.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.Product.Price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Product.Price)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayNameFor(model => model.Product.Image)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content("~/Uploads/" + Model.Product.Image)" width="300" height="200" class="center" top=100px margin=25px10px display=inline-block />
+            @*@Html.DisplayFor(model => model.Image)*@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Product.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Product.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.category)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Product.Categoryid, new SelectList(Model.Categories, "id", "name"), new { htmlAttributes = new { @class = "form-control" } })
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product.id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Product.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
