@@ -11,22 +11,24 @@
     {
         <input value="Filter" type="submit" />
         @Html.TextBox("searching")
-    }'
+    }
 
 </div>
+<br />
 
 <button style="overflow: hidden;
-             margin-left:300px;
+             /*margin-left:300px;*/
              /*margin-right:350px;*/
             margin-top:0px;
-            padding-top:0px;
-            background-color:aqua">
-    @Html.ActionLink("ADD", "Create")
+            padding-top:5px;
+            padding-bottom:5px;
+            padding-left:15px;
+            padding-right:15px;">
+    @Html.ActionLink("ADD", "Create", new { @class = "btn btn-primary" })
 </button>
 
 
 
-<br />
 <br />
 <br />
 
