@@ -18,6 +18,7 @@ namespace E_market.Models
         public string Description { get; set; }
         public Category category { get; set; }
         public int Categoryid { get; set; }
+        public virtual Cart Cart { get; set; }
 
     }
 }

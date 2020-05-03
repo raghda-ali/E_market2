@@ -22,6 +22,8 @@ namespace E_market.Models
     {
         public DbSet<Product> products { get; set; }
         public DbSet<Category> categories { get; set; }
+        public DbSet<Cart> carts { get; set; }
+
 
 
         public ApplicationDbContext()
