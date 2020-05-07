@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<E_market.Models.Product>
+@using E_market.Models
 @{
     ViewBag.Title = "Product";
 }
@@ -37,6 +38,37 @@
     <h2 class="text-center">Product List</h2>
     <br />
     <br />
+    <div class="modal" id="CARTLIST" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" style="text-align:center">CART LIST</h2>
+                </div>
+                <div class="modal-body">
+                    @*@if (Session["cart"] != null)
+
+                    {
+                        foreach (var item in (List<Cart>)Session["cart"])
+                        {
+                            <p style="border: 2px solid black;float: right">@Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP</p>
+                            <p style="border: 2px solid black;float: right">Added To Cart ago </p>
+
+                        }
+                    }*@
+                    @foreach (var item in Model)
+                       {
+                          <div style="border: 2px solid black;float: inherit">
+                              <button type="button" style="border: 2px solid black;float: left">Remove</button>
+                              <p>@Html.DisplayFor(modelItem => item.Name)-@Html.DisplayFor(modelItem => item.Price)EGP <br> Added To Cart ago</p>
+                              
+                              <p > </p>
+                          </div>
+                       }
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     @foreach (var item in Model)
     {
@@ -55,9 +87,9 @@
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@
                     @Html.ActionLink("Details", "Details", new { id = item.id })
 
-                  @using (Html.BeginForm("AddToCart", "Products", new { product_id = item.id} , FormMethod.Post))
+                    @using (Html.BeginForm("AddToCart", "Products", new { product_id = item.id }, FormMethod.Post))
 
-                    {  <p><button class="right">Add to Cart</button></p>}
+                    {<p><button class="right">Add to Cart</button></p>}
                 </div>
             </div>
         </div>
