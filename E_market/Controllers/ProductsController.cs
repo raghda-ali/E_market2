@@ -181,5 +181,21 @@ namespace E_market.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult AddToCart(int product_id)
+        {
+            List<Cart> cart = new List<Cart>();
+            var product = db.carts.Find(product_id);
+          //  var product = ctx.carts.Find(product_id);
+            cart.Add(new Cart()
+            {
+                Product = product
+            });
+
+
+            Session["cart"] = cart;
+            return Redirect("Index");
+        }
+
     }
 }

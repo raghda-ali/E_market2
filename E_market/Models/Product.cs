@@ -20,5 +20,10 @@ namespace E_market.Models
         public int Categoryid { get; set; }
         public virtual Cart Cart { get; set; }
 
+        public static implicit operator Product(Cart v)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
