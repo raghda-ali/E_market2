@@ -184,16 +184,28 @@ namespace E_market.Controllers
 
         public ActionResult AddToCart(int product_id)
         {
-            List<Cart> cart = new List<Cart>();
-            var product = db.carts.Find(product_id);
-          //  var product = ctx.carts.Find(product_id);
-            cart.Add(new Cart()
+            if (Session["Cart"] == null) {
+                List<Cart> cart = new List<Cart>();
+                var product = db.carts.Find(product_id);
+                cart.Add(new Cart()
+                {
+                    Product = product
+                });
+                Session["Cart"] = cart;
+            }
+            else
             {
-                Product = product
-            });
+                List<Cart> cart = (List<Cart>)Session["Cart"];
+                var product = db.carts.Find(product_id);
+                cart.Add(new Cart()
+                {
+                    Product = product
+                });
+                Session["Cart"] = cart;
+            } 
 
+            //  var product = ctx.carts.Find(product_id);
 
-            Session["cart"] = cart;
             return Redirect("Index");
         }
 

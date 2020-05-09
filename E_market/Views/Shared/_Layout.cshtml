@@ -14,7 +14,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-               
+
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -32,17 +32,43 @@
             </div>
         </div>
     </div>
-    <ul class ="nav navbar-nav navbar-right" >
+    <div class="modal" id="CARTLIST" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" style="text-align:center">CART LIST</h2>
+                </div>
+                <div class="modal-body">
+                    @if (Session["cart"] != null)
+
+                    {
+                        foreach (var item in (List<Cart>)Session["cart"])
+                        {
+                            <div style="border: 2px solid black;float: inherit">
+                                <button type="button" style="border: 2px solid black;float: left">Remove</button>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP <br>Added To Cart @DateTime.Now.Subtract(item.added_at)ago
+                                </p>
+                 
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">cart(3) <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 @if (Session["cart"] != null)
 
-                {  foreach (var item in (List<Cart>)Session["cart"])
                 {
-                    <li><a href="#">@item.Product.Name </a></li>
+                    foreach (var item in (List<Cart>)Session["cart"])
+                    {
+                        <li><a href="#">@item.Product.Name </a></li>
 
-                }
+                    }
                 }
 
                 <!--<li><a href="#">IT</a></li>-->
