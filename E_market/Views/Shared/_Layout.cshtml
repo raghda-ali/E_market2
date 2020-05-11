@@ -1,4 +1,5 @@
 ﻿@using E_market.Models
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +48,12 @@
                             <div style="border: 2px solid black;float: inherit">
                                 <button type="button" style="border: 2px solid black;float: left">Remove</button>
                                 <p>
-                                    @Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP <br>Added To Cart @DateTime.Now.Subtract(item.added_at)ago
+                                    @Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP <br>Added To Cart 
+                                    @Html.Action("calculated", "Product", item.added_at) ago
+                                      
                                 </p>
-                 
+
+
                             </div>
                         }
                     }
