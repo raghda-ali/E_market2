@@ -206,6 +206,10 @@
     <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-E_market-20200414021409.mdf" />
+    <Content Include="App_Data\aspnet-E_market-20200414021409_log.ldf">
+      <DependentUpon>aspnet-E_market-20200414021409.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -227,6 +231,20 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Products\css\bootstrap-grid.css" />
+    <Content Include="Views\Products\css\bootstrap-grid.min.css" />
+    <Content Include="Views\Products\css\bootstrap-reboot.css" />
+    <Content Include="Views\Products\css\bootstrap-reboot.min.css" />
+    <Content Include="Views\Products\css\bootstrap.css" />
+    <Content Include="Views\Products\css\bootstrap.min.css" />
+    <Content Include="Views\Products\css\style.css.txt" />
+    <Content Include="Views\Products\js\bootstrap.bundle.js" />
+    <Content Include="Views\Products\js\bootstrap.bundle.min.js" />
+    <Content Include="Views\Products\js\bootstrap.js" />
+    <Content Include="Views\Products\js\bootstrap.min.js" />
+    <Content Include="Views\Products\js\html5shiv.min.js" />
+    <Content Include="Views\Products\js\jquery-1.11.1.min.js" />
+    <Content Include="Views\Products\js\respond.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -266,9 +284,18 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\css\bootstrap-grid.css.map" />
+    <Content Include="Views\Products\css\bootstrap-grid.min.css.map" />
+    <Content Include="Views\Products\css\bootstrap-reboot.css.map" />
+    <Content Include="Views\Products\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Views\Products\css\bootstrap.css.map" />
+    <Content Include="Views\Products\css\bootstrap.min.css.map" />
+    <Content Include="Views\Products\js\bootstrap.bundle.js.map" />
+    <Content Include="Views\Products\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Views\Products\js\bootstrap.js.map" />
+    <Content Include="Views\Products\js\bootstrap.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>

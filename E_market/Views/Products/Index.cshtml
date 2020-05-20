@@ -6,6 +6,19 @@
 
 <h2>Product</h2>
 
+@*<head>
+        <!--IE Compatibility Meta-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--First Mobil Meta-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="~/Views/product/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/Views/product/css/style.css.txt" />
+        <!--[if it IE 9]-->
+        <script src="~/Views/product/js/html5shiv.min.js"></script>
+        <script src="~/Views/product/js/respond.min.js"></script>
+        <!--[endif]-->
+    </head>
+*@
 <div>
 
     @using (Html.BeginForm("Index", "Products", FormMethod.Get))
@@ -15,6 +28,7 @@
     }
 
 </div>
+
 <br />
 
 <button style="overflow: hidden;
@@ -39,119 +53,128 @@
     <br />
     <br />
     @*<div class="modal" id="CARTLIST" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" style="text-align:center">CART LIST</h2>
-                </div>
-                <div class="modal-body">
-                    @if (Session["cart"] != null)
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" style="text-align:center">CART LIST</h2>
+                    </div>
+                    <div class="modal-body">
+                        @if (Session["cart"] != null)
 
-                    {
-                        foreach (var item in (List<Cart>)Session["cart"])
                         {
-                            <div style="border: 2px solid black;float: inherit">
-                                <button type="button" style="border: 2px solid black;float: left">Remove</button>
-                                <p>
-                                    @Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP <br>Added To Cart @DateTime.Now.Subtract(item.added_at)ago
-                                </p>
-                                <p style="border: 2px solid black;float: right">@Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP</p>
-                    <p style="border: 2px solid black;float: right">Added To Cart ago </p>
-                            </div>
+                            foreach (var item in (List<Cart>)Session["cart"])
+                            {
+                                <div style="border: 2px solid black;float: inherit">
+                                    <button type="button" style="border: 2px solid black;float: left">Remove</button>
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP <br>Added To Cart @DateTime.Now.Subtract(item.added_at)ago
+                                    </p>
+                                    <p style="border: 2px solid black;float: right">@Html.DisplayFor(modelItem => item.Product.Name)-@Html.DisplayFor(modelItem => item.Product.Price)EGP</p>
+                        <p style="border: 2px solid black;float: right">Added To Cart ago </p>
+                                </div>
+                            }
                         }
-                    }
 
-                    @foreach (var item in Model)
-        {
-            <div style="border: 2px solid black;float: inherit">
-            <button type="button" style="border: 2px solid black;float: left">Remove</button>
-            <p>@Html.DisplayFor(modelItem => item.Name)-@Html.DisplayFor(modelItem => item.Price)EGP <br> Added To Cart ago</p>
+                        @foreach (var item in Model)
+            {
+                <div style="border: 2px solid black;float: inherit">
+                <button type="button" style="border: 2px solid black;float: left">Remove</button>
+                <p>@Html.DisplayFor(modelItem => item.Name)-@Html.DisplayFor(modelItem => item.Price)EGP <br> Added To Cart ago</p>
 
+                </div>
+            }
+
+                    </div>
+                            </div>
             </div>
+        </div>*@
+   
+
+        @foreach (var item in Model)
+        {
+
+            double Price = Convert.ToInt32(item.Price);
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-bottom:25px">
+                <div class="thumbnail">
+                    <div class="image">
+                        <a href='@Url.Action("Details", "Products",new { id = item.id })'>
+
+                            <img class="img-responsive" src="~/Uploads/@item.Image" height="350" width="240" />
+                        </a>
+                    </div>
+
+                    <div class="caption" style="border-top:3px solid #808080">
+                        <h3><a href="#">@item.Name</a></h3>
+                        <h4>@Price.ToString("F2")EGP</h4>
+
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@
+                        @Html.ActionLink("Details", "Details", new { id = item.id })
+
+                        @using (Html.BeginForm("AddToCart", "Products", new { product_id = item.id }, FormMethod.Post))
+
+                        {<p><button class="right">Add to Cart</button></p>}
+                    </div>
+                </div>
+            </div>
+
+
+
         }
 
-                </div>
-                        </div>
-        </div>
-    </div>*@
-
-    @foreach (var item in Model)
-    {
-        double Price = Convert.ToInt32(item.Price);
-        <div class="col-md-3" style="margin-bottom:25px">
-            <div class="thumbnail">
-                <div class="image">
-                    <a href='@Url.Action("Details", "Products",new { id = item.id })'>
-
-                        <img class="img-responsive" src="~/Uploads/@item.Image" height="350" width="240" />
-                    </a>
-                </div>
-                <div class="caption" style="border-top:3px solid #808080">
-                    <h3><a href="#">@item.Name</a></h3>
-                    <h4>@Price.ToString("F2")EGP</h4>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@
-                    @Html.ActionLink("Details", "Details", new { id = item.id })
-
-                    @using (Html.BeginForm("AddToCart", "Products", new { product_id = item.id }, FormMethod.Post))
-
-                    {<p><button class="right">Add to Cart</button></p>}
-                </div>
-            </div>
-        </div>
-    }
-</div>
+    </div>
 
 
 
 
-@*@model IEnumerable<E_market.Models.Product>
 
-    @{
-        ViewBag.Title = "Index";
-    }
+    @*@model IEnumerable<E_market.Models.Product>
 
-    <h2>Index</h2>
+        @{
+            ViewBag.Title = "Index";
+        }
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
+        <h2>Index</h2>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.id })
-            </td>
-        </tr>
-    }
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
 
-    </table>*@
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                </td>
+            </tr>
+        }
+
+        </table>*@
